@@ -4,5 +4,68 @@
         <name>idp_api</name>
     </assembly>
     <members>
+        <member name="T:idp_api.Controllers.ToDoController">
+            <summary>
+            ToDo controller
+            </summary>
+        </member>
+        <member name="P:idp_api.Controllers.ToDoController._memoryCache">
+            <summary>
+            _memoryCache
+            </summary>
+        </member>
+        <member name="M:idp_api.Controllers.ToDoController.#ctor(Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+            <summary>
+            contructor
+            </summary>
+            <param name="memoryCache"></param>
+        </member>
+        <member name="M:idp_api.Controllers.ToDoController.Get">
+            <summary>
+            Get
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:idp_api.Controllers.ToDoController.Post(idp_api.Models.ToDoEdit)">
+            <summary>
+            Post
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:idp_api.Models.ToDo">
+            <summary>
+            ToDo
+            </summary>
+        </member>
+        <member name="P:idp_api.Models.ToDo.Id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:idp_api.Models.ToDo.Titie">
+            <summary>
+            title
+            </summary>
+        </member>
+        <member name="P:idp_api.Models.ToDo.Completed">
+            <summary>
+            completed flag
+            </summary>
+        </member>
+        <member name="T:idp_api.Models.ToDoEdit">
+            <summary>
+            ToDoEdit
+            </summary>
+        </member>
+        <member name="P:idp_api.Models.ToDoEdit.Titie">
+            <summary>
+            title
+            </summary>
+        </member>
+        <member name="P:idp_api.Models.ToDoEdit.Completed">
+            <summary>
+            completed flag
+            </summary>
+        </member>
     </members>
 </doc>

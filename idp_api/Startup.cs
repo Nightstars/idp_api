@@ -74,6 +74,15 @@ namespace idp_api
                 var xmlFilePath = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
                 c.IncludeXmlComments(xmlFilePath);
             });
+            services.AddMemoryCache();
+
+            services.AddCors(options => {
+                options.AddPolicy("AngularClientOrigin",
+                builder => builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
+            });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,6 +104,8 @@ namespace idp_api
 
             app.UseAuthentication();
             app.UseAuthorization();            
+
+            app.UseCors("AngularClientOrigin");
 
             app.UseEndpoints(endpoints =>
             {
