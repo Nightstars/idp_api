@@ -44,6 +44,8 @@ namespace idp_api
                         //{
                         //    ValidateAudience = false
                         //};
+                        options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(1);
+                        options.TokenValidationParameters.RequireExpirationTime = true;
                     }
                 );
             services.AddControllers();
