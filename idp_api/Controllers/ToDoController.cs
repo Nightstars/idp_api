@@ -33,31 +33,37 @@ namespace idp_api.Controllers
                 new ToDo
                 {
                     Id=Guid.NewGuid(),
-                    Titie="吃饭",
+                    Title="吃饭",
                     Completed=true
                 },
                 new ToDo
                 {
                     Id=Guid.NewGuid(),
-                    Titie="学习C#",
+                    Title="学习C#",
                     Completed=false
                 },
                 new ToDo
                 {
                     Id=Guid.NewGuid(),
-                    Titie="学习 .NET CORE",
+                    Title="学习 .NET CORE",
                     Completed=false
                 },
                 new ToDo
                 {
                     Id=Guid.NewGuid(),
-                    Titie="学习 ASP.NET CORE",
+                    Title="学习 ASP.NET CORE",
                     Completed=false
                 },
                 new ToDo
                 {
                     Id=Guid.NewGuid(),
-                    Titie="学习 Entity Framework",
+                    Title="学习 Entity Framework",
+                    Completed=false
+                },
+                new ToDo
+                {
+                    Id=Guid.NewGuid(),
+                    Title="学习 Entity Framework　Core",
                     Completed=false
                 }
             };
@@ -99,7 +105,7 @@ namespace idp_api.Controllers
             var todo = new ToDo
             {
                 Id = Guid.NewGuid(),
-                Titie = toDoEdit.Titie,
+                Title = toDoEdit.Title,
                 Completed = toDoEdit.Completed
             };
 

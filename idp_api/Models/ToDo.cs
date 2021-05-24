@@ -18,7 +18,7 @@ namespace idp_api.Models
         /// <summary>
         /// title
         /// </summary>
-        public string Titie { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// completed flag
