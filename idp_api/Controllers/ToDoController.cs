@@ -1,4 +1,5 @@
 ﻿using idp_api.Models;
+using idp_api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -15,64 +16,15 @@ namespace idp_api.Controllers
     [Route("api/todo")]
     public class ToDoController : Controller
     {
-        /// <summary>
-        /// _memoryCache
-        /// </summary>
-        private IMemoryCache _memoryCache { get; set; }
-        private const string Key = "TODO_KEY";
-        private readonly List<ToDo> _toDos;
+        private readonly ToDoService _toDoService;
         /// <summary>
         /// contructor
         /// </summary>
         /// <param name="memoryCache"></param>
-        public ToDoController(IMemoryCache memoryCache)
+        public ToDoController(ToDoService toDoService)
         {
-            _memoryCache = memoryCache;
-            _toDos = new List<ToDo>
-            {
-                new ToDo
-                {
-                    Id=Guid.NewGuid(),
-                    Title="吃饭",
-                    Completed=true
-                },
-                new ToDo
-                {
-                    Id=Guid.NewGuid(),
-                    Title="学习C#",
-                    Completed=false
-                },
-                new ToDo
-                {
-                    Id=Guid.NewGuid(),
-                    Title="学习 .NET CORE",
-                    Completed=false
-                },
-                new ToDo
-                {
-                    Id=Guid.NewGuid(),
-                    Title="学习 ASP.NET CORE",
-                    Completed=false
-                },
-                new ToDo
-                {
-                    Id=Guid.NewGuid(),
-                    Title="学习 Entity Framework",
-                    Completed=false
-                },
-                new ToDo
-                {
-                    Id=Guid.NewGuid(),
-                    Title="学习 Entity Framework　Core",
-                    Completed=false
-                }
-            };
-            if(!memoryCache.TryGetValue(Key,out List<ToDo> todos))
-            {
-                var options = new MemoryCacheEntryOptions()
-                    .SetAbsoluteExpiration(TimeSpan.FromDays(1));
-                _memoryCache.Set(Key, todos, options);
-            }
+            _toDoService = toDoService;
+
         }
 
         #region Get
@@ -83,14 +35,7 @@ namespace idp_api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            if(!_memoryCache.TryGetValue(Key,out List<ToDo> todos))
-            {
-                todos = _toDos;
-                var options = new MemoryCacheEntryOptions()
-                    .SetAbsoluteExpiration(TimeSpan.FromDays(1));
-                _memoryCache.Set(Key, todos, options);
-            }
-            return Json(_toDos);
+            return Ok(_toDoService.Get());
         }
         #endregion
 
@@ -100,7 +45,7 @@ namespace idp_api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult Post(ToDoEdit toDoEdit)
+        public IActionResult Post([FromBody]ToDoEdit toDoEdit)
         {
             var todo = new ToDo
             {
@@ -108,16 +53,7 @@ namespace idp_api.Controllers
                 Title = toDoEdit.Title,
                 Completed = toDoEdit.Completed
             };
-
-            if (!_memoryCache.TryGetValue(Key, out List<ToDo> todos))
-            {
-                todos = _toDos;
-            }
-            _toDos.Add(todo);
-            var options = new MemoryCacheEntryOptions()
-                   .SetAbsoluteExpiration(TimeSpan.FromDays(1));
-            _memoryCache.Set(Key, todos, options);
-
+            _toDoService.Insert(todo);
             return Ok(todo);
         }
         #endregion

@@ -9,12 +9,7 @@
             ToDo controller
             </summary>
         </member>
-        <member name="P:idp_api.Controllers.ToDoController._memoryCache">
-            <summary>
-            _memoryCache
-            </summary>
-        </member>
-        <member name="M:idp_api.Controllers.ToDoController.#ctor(Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+        <member name="M:idp_api.Controllers.ToDoController.#ctor(idp_api.Services.ToDoService)">
             <summary>
             contructor
             </summary>
@@ -42,7 +37,7 @@
             id
             </summary>
         </member>
-        <member name="P:idp_api.Models.ToDo.Titie">
+        <member name="P:idp_api.Models.ToDo.Title">
             <summary>
             title
             </summary>
@@ -57,7 +52,7 @@
             ToDoEdit
             </summary>
         </member>
-        <member name="P:idp_api.Models.ToDoEdit.Titie">
+        <member name="P:idp_api.Models.ToDoEdit.Title">
             <summary>
             title
             </summary>
