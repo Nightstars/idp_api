@@ -14,6 +14,7 @@ namespace idp_api.Controllers
     /// ToDo controller
     /// </summary>
     [Route("api/todo")]
+    [Authorize]
     public class ToDoController : Controller
     {
         private readonly ToDoService _toDoService;
